@@ -22,25 +22,6 @@ int qmi_tlv_set_array(struct qmi_tlv *tlv, unsigned id, unsigned len_size, void 
 #define QMI_QRILD_RESULT_SUCCESS 0
 #define QMI_QRILD_RESULT_FAILURE 1
 
-/* get a value from a buffer
- * _ptr should be a a pointer to
- * a byte buffer. _type should be
- * the type to fetch (e.g. uint32_t)
- * the macro evaluates to the value
- * read from the buffer.
- *
- * e.g.
- * uint32_t x = get_n(buf, uint32_t);
- */
-#define get_n(_ptr, _type) ({ \
-	_type v = 0; \
-	int i; \
-	for(i = sizeof(_type); i > 0; i--) { \
-		v |= ((*(_ptr)++) << i); \
-	} \
-	v; \
-})
-
 struct qrild_svc_qmi_result {
 	uint16_t result;
 	uint16_t error;
